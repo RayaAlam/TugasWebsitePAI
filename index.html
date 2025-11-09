@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Qur'an dan Lingkungan Hidup</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&family=Playfair+Display:wght@700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+            color: #1a202c;
+            background: #0a0e27;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(88, 166, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+            animation: bgShift 20s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 30px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.9) 0%, rgba(26, 32, 44, 0.85) 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+            pointer-events: none;
+        }
+        
+        .hero-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(165, 126, 255, 0.852));
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.6em;
+            color: #a0aec0;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-hint::after {
+            content: '↓';
+            display: block;
+            font-size: 2em;
+            margin-top: 10px;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
+        }
+        
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            padding: 25px 35px;
+            color: #a0aec0;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #6366f1);
+            transform: translateX(-50%);
+            transition: width 0.4s ease;
+        }
+        
+        nav a:hover {
+            color: #ffffff;
+        }
+        
+        nav a:hover::before {
+            width: 70%;
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+            }
+            
+            nav ul {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1px;
+                background: rgba(255,255,255,0.05);
+            }
+            
+            nav li {
+                background: rgba(10, 14, 39, 0.95);
+            }
+            
+            nav a {
+                padding: 18px 15px;
+                font-size: 0.75em;
+                letter-spacing: 1px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav ul {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+        
+        /* Section Styles */
+        section {
+            margin-bottom: 120px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            color: #ffffff;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(90deg, #8b5cf6, #6366f1);
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        
+        h3 {
+            color: #ffffff;
+            font-size: 2em;
+            margin: 40px 0 25px;
+            font-weight: 700;
+        }
+        
+        p {
+            color: #cbd5e0;
+            font-size: 1.1em;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+        
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 40px 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            transition: all 0.8s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 30px 80px rgba(139, 92, 246, 0.3);
+        }
+        
+        .glass-card:hover::before {
+            top: -25%;
+            left: -25%;
+        }
+        
+        /* Ayat Box */
+        .ayat-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .ayat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #8b5cf6, #6366f1, #8b5cf6);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .ayat-box:hover {
+            transform: scale(1.02);
+            border-color: rgba(139, 92, 246, 0.6);
+        }
+        
+        .arabic {
+            font-family: 'Amiri', serif;
+            font-size: 2.5em;
+            text-align: right;
+            direction: rtl;
+            color: #ffffff;
+            margin: 30px 0;
+            line-height: 2.5;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .translation {
+            font-style: italic;
+            color: #e2e8f0;
+            padding: 30px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            line-height: 2;
+            border-left: 5px solid #8b5cf6;
+        }
+        
+        /* Grid Layouts */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 30px 60px rgba(139, 92, 246, 0.4);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .feature-card h3 {
+            position: relative;
+            z-index: 1;
+            margin-top: 0;
+        }
+        
+        .feature-card p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Icon Box */
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+            transition: all 0.4s ease;
+        }
+        
+        .feature-card:hover .icon-box {
+            transform: rotateY(180deg) scale(1.1);
+        }
+        
+        /* List Styles */
+        .styled-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .styled-list li {
+            padding: 20px 20px 20px 70px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            color: white;
+        }
+        
+        .styled-list li:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-left-color: #8b5cf6;
+            transform: translateX(10px);
+        }
+        
+        .styled-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            color: #8b5cf6;
+        }
+        
+        /* Badge Styles */
+        .badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(99, 102, 241, 0.3));
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            border-radius: 30px;
+            color: #ffffff;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .badge:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.5), rgba(99, 102, 241, 0.5));
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 30px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Action Cards */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .action-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .action-card:hover::before {
+            left: 100%;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-20px);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 30px 70px rgba(139, 92, 246, 0.4);
+        }
+        
+        .action-card:nth-child(1) { border-top: 5px solid #ef4444; }
+        .action-card:nth-child(2) { border-top: 5px solid #f59e0b; }
+        .action-card:nth-child(3) { border-top: 5px solid #00cd0a; }
+        .action-card:nth-child(4) { border-top: 5px solid #3b82f6; }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(17, 24, 39, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            color: #ffffff;
+            text-align: center;
+            padding: 80px 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, #6366f1, transparent);
+        }
+        
+        footer p {
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+        
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            text-decoration: none;
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-15px) scale(1.15);
+            box-shadow: 0 25px 60px rgba(139, 92, 246, 0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2em;
+            }
+            
+            .container {
+                padding: 60px 20px;
+            }
+            
+            h2 {
+                font-size: 2.5em;
+            }
+            
+            .card-grid,
+            .action-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .glass-card,
+            .ayat-box,
+            .highlight-box,
+            .action-card {
+                padding: 30px;
+            }
+            
+            .scroll-top {
+                width: 60px;
+                height: 60px;
+                bottom: 30px;
+                right: 30px;
+            }
+            
+            .arabic {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-icon">☪</div>
+        <h1>Al-Qur'an dan<br>Lingkungan Hidup</h1>
+        <p class="hero-subtitle">Tanggung Jawab Muslim terhadap Alam</p>
+        <div class="scroll-hint">Scroll</div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#pendahuluan">Pendahuluan</a></li>
+            <li><a href="#konsep">Konsep Dasar</a></li>
+            <li><a href="#ayat">Ayat-ayat</a></li>
+            <li><a href="#tanggung-jawab">Tanggung Jawab</a></li>
+            <li><a href="#praktis">Aplikasi Praktis</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <section id="pendahuluan">
+            <h2>Pendahuluan</h2>
+            <div class="glass-card">
+                <p>Islam sebagai agama yang komprehensif memberikan panduan lengkap tentang hubungan manusia dengan alam. Al-Qur'an dan Hadis mengajarkan bahwa menjaga kelestarian lingkungan adalah bagian dari keimanan seorang Muslim.</p>
+                <p>Dalam konteks krisis lingkungan global saat ini, pemahaman tentang perspektif Islam terhadap lingkungan hidup menjadi sangat relevan. Sebagai khalifah di bumi, kita memiliki tanggung jawab untuk melestarikan dan melindungi alam ciptaan Allah SWT.</p>
+            </div>
+        </section>
+        
+        <section id="konsep">
+            <h2>Konsep Dasar Islam tentang Lingkungan</h2>
+            
+            <h3>Khalifah fil Ardh (Wakil Allah di Bumi)</h3>
+            <p>Manusia diciptakan sebagai khalifah atau wakil Allah di bumi, sebagaimana firman-Nya dalam QS. Al-Baqarah ayat 30:</p>
+            
+            <div class="ayat-box">
+                <div class="arabic">وَاِذْ قَالَ رَبُّكَ لِلْمَلٰۤىِٕكَةِ ِانِّيْ جَاعِلٌ فِى الْاَرْضِ خَلِيْفَةًۗ قَالُوْٓا اَتَجْعَلُ فِيْهَا مَنْ يُّفْسِدُ فِيْهَا وَيَسْفِكُ الدِّمَاۤءَۚ وَنَحْنُ نُسَبِّحُ بِحَمْدِكَ وَنُقَدِّسُ لَكَۗ قَالَ اِنِّيْٓ اَعْلَمُ مَا لَا تَعْلَمُوْنَ ۝٣٠</div>
+                <div class="translation">(Ingatlah) ketika Tuhanmu berfirman kepada para malaikat, “Aku hendak menjadikan khalifah di bumi.” Mereka berkata, “Apakah Engkau hendak menjadikan orang yang merusak dan menumpahkan darah di sana, sedangkan kami bertasbih memuji-Mu dan menyucikan nama-Mu?” Dia berfirman, “Sesungguhnya Aku mengetahui apa yang tidak kamu ketahui.”</div>
+            </div>
+            
+            <div class="card-grid">
+                <div class="feature-card">
+                    <div class="icon-box">🌱</div>
+                    <h3>Tanggung Jawab Pengelolaan</h3>
+                    <p>Sebagai khalifah, manusia diberi amanah untuk mengelola bumi dan segala isinya dengan bijaksana dan penuh tanggung jawab.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-box">⚖️</div>
+                    <h3>Tanggung Jawab Perilaku</h3>
+                    <p>Manusia akan dimintai pertanggungjawaban atas cara mereka memperlakukan alam. Setiap tindakan merusak lingkungan akan dipertanggungjawabkan di hadapan Allah SWT.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-box">🛡️</div>
+                    <h3>Kewajiban Melestarikan</h3>
+                    <p>Khalifah berkewajiban menjaga, memelihara, dan melestarikan alam untuk generasi saat ini dan mendatang.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="ayat">
+            <h2>Ayat-ayat Al-Qur'an tentang Lingkungan</h2>
+            
+            <h3>Larangan Berbuat Kerusakan di Bumi</h3>
+            
+            <div class="ayat-box">
+                <strong style="color: #a0aec0; display: block; margin-bottom: 20px;">QS. Al-A'raf ayat 56:</strong>
+                <div class="arabic">وَلَا تُفْسِدُوْا فِى الْاَرْضِ بَعْدَ اِصْلَاحِهَا وَادْعُوْهُ خَوْفًا وَّطَمَعًاۗ اِنَّ رَحْمَتَ اللّٰهِ قَرِيْبٌ مِّنَ الْمُحْسِنِيْنَ ۝٥٦</div>
+                <div class="translation">Janganlah kamu berbuat kerusakan di bumi setelah diatur dengan baik. Berdoalah kepada-Nya dengan rasa takut dan penuh harap. Sesungguhnya rahmat Allah sangat dekat dengan orang-orang yang berbuat baik.</div>
+            </div>
+            
+            <div class="ayat-box">
+                <strong style="color: #a0aec0; display: block; margin-bottom: 20px;">QS. Al-Qashash ayat 77:</strong>
+                <div class="arabic">وَابْتَغِ فِيْمَآ اٰتٰىكَ اللّٰهُ الدَّارَ الْاٰخِرَةَ وَلَا تَنْسَ نَصِيْبَكَ مِنَ الدُّنْيَا وَاَحْسِنْ كَمَآ اَحْسَنَ اللّٰهُ اِلَيْكَ وَلَا تَبْغِ الْفَسَادَ فِى الْاَرْضِۗ اِنَّ اللّٰهَ لَا يُحِبُّ الْمُفْسِدِيْنَ ۝٧٧</div>
+                <div class="translation">Dan, carilah pada apa yang telah dianugerahkan Allah kepadamu (pahala) negeri akhirat, tetapi janganlah kamu lupakan bagianmu di dunia. Berbuat baiklah (kepada orang lain) sebagaimana Allah telah berbuat baik kepadamu dan janganlah kamu berbuat kerusakan di bumi. Sesungguhnya Allah tidak menyukai orang-orang yang berbuat kerusakan.</div>
+            </div>
+            
+            <h3>Alam sebagai Tanda Kekuasaan Allah</h3>
+            
+            <div class="ayat-box">
+                <strong style="color: #a0aec0; display: block; margin-bottom: 20px;">QS. Al-Baqarah ayat 164:</strong>
+                <div class="arabic">اِنَّ فِيْ خَلْقِ السَّمٰوٰتِ وَالْاَرْضِ وَاخْتِلَافِ الَّيْلِ وَالنَّهَارِ وَالْفُلْكِ الَّتِيْ تَجْرِيْ فِى الْبَحْرِ بِمَا يَنْفَعُ النَّاسَ وَمَآ اَنْزَلَ اللّٰهُ مِنَ السَّمَاۤءِ مِنْ مَّاۤءٍ فَاَحْيَا بِهِ الْاَرْضَ بَعْدَ مَوْتِهَا وَبَثَّ فِيْهَا مِنْ كُلِّ دَاۤبَّةٍۖ وَّتَصْرِيْفِ الرِّيٰحِ وَالسَّحَابِ الْمُسَخَّرِ بَيْنَ السَّمَاۤءِ وَالْاَرْضِ لَاٰيٰتٍ لِّقَوْمٍ يَّعْقِلُوْنَ ۝١٦٤</div>
+                <div class="translation">Sesungguhnya pada penciptaan langit dan bumi, pergantian malam dan siang bahtera yang berlayar di laut dengan (muatan) yang bermanfaat bagi manusia, apa yang Allah turunkan dari langit berupa air, lalu dengannya Dia menghidupkan bumi setelah mati (kering), dan Dia menebarkan di dalamnya semua jenis hewan, dan pengisaran angin dan awan yang dikendalikan antara langit dan bumi, (semua itu) sungguh merupakan tanda-tanda (kebesaran Allah) bagi kaum yang mengerti.</div>
+            </div>
+        </section>
+        
+        <section id="tanggung-jawab">
+            <h2>Bentuk-bentuk Tanggung Jawab Muslim</h2>
+            
+            <div class="card-grid">
+                <!-- <div class="feature-card">
+                    <div class="icon-box">💧</div>
+                    <h3>Konservasi Sumber Daya Alam</h3>
+                    <p><span class="badge">Air</span> <span class="badge">Hutan</span> <span class="badge">Energi</span></p>
+                    <p>Menjaga dan memelihara sumber daya alam dengan bijaksana untuk keberlanjutan generasi mendatang.</p>
+                </div>
+                 -->
+                <div class="feature-card">
+                    <div class="icon-box">🌍</div>
+                    <h3>Pencegahan Polusi</h3>
+                    <p><span class="badge">Udara</span> <span class="badge">Air</span> <span class="badge">Tanah</span></p>
+                    <p>Mencegah dan mengurangi pencemaran lingkungan melalui tindakan nyata dalam kehidupan sehari-hari.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-box">♻️</div>
+                    <h3>Pengelolaan Sampah</h3>
+                    <p><span class="badge">Reduce</span> <span class="badge">Reuse</span> <span class="badge">Recycle</span></p>
+                    <p>Menerapkan prinsip 3R dalam pengelolaan sampah untuk mengurangi dampak pada lingkungan.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-box">🦋</div>
+                    <h3>Keanekaragaman Hayati</h3>
+                    <p><span class="badge">Flora</span> <span class="badge">Fauna</span></p>
+                    <p>Melindungi dan melestarikan keanekaragaman hayati sebagai ciptaan Allah yang harus dijaga.</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>💧 Konservasi Air</h3>
+                <ul class="styled-list">
+                    <li>Menggunakan air secukupnya, tidak boros</li>
+                    <!-- <li>Tidak mencemari sumber air</li>
+                    <li>Menjaga kebersihan sungai, danau, dan laut</li> -->
+                    <li>Menutup kran air dengan rapat</li>
+                    <li>Menggunakan teknologi hemat air</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%); border-color: rgba(59, 130, 246, 0.4);">
+                <h3>🌳 Pelestarian Hutan</h3>
+                <ul class="styled-list">
+                    <li>Tidak menebang pohon sembarangan</li>
+                    <li>Melakukan reboisasi dan penghijauan</li>
+                    <li>Melindungi habitat satwa liar</li>
+                    <!-- <li>Mencegah kebakaran hutan</li>
+                    <li>Mendukung program konservasi hutan</li> -->
+                </ul>
+            </div>
+            
+            <div class="highlight-box" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%); border-color: rgba(245, 158, 11, 0.4);">
+                <h3>⚡ Efisiensi Energi</h3>
+                <ul class="styled-list">
+                    <li>Menghemat listrik dan bahan bakar</li>
+                    <!-- <li>Mengembangkan energi terbarukan</li> -->
+                    <li>Mengurangi ketergantungan pada bahan bakar fosil</li>
+                    <li>Menggunakan peralatan hemat energi</li>
+                    <!-- <li>Memanfaatkan energi matahari dan angin</li> -->
+                </ul>
+            </div>
+        </section>
+        
+        <section id="praktis">
+            <h2>Aplikasi Praktis dalam Kehidupan</h2>
+            
+            <div class="action-grid">
+                <div class="action-card">
+                    <h3>Di Rumah</h3>
+                    <ul class="styled-list">
+                        <!-- <li>Menghemat listrik dengan mematikan lampu yang tidak digunakan</li> -->
+                        <li>Menggunakan lampu LED hemat energi</li>
+                        <li>Memilah sampah dan komposting</li>
+                        <li>Menggunakan produk ramah lingkungan</li>
+                        <li>Menanam tanaman di pekarangan</li>
+                        <li>Menggunakan air secukupnya</li>
+                        <li>Menggunakan ventilasi alami dibanding AC</li>
+                    </ul>
+                </div>
+                
+                <div class="action-card">
+                    <h3>Di Tempat Kerja/Sekolah</h3>
+                    <ul class="styled-list">
+                        <li>Paperless office - kurangi penggunaan kertas</li>
+                        <li>Menggunakan alat tulis isi ulang</li>
+                        <li>Membawa bekal dengan wadah reusable</li>
+                        <li>Gunakan tangga untuk jarak dekat</li>
+                        <li>Kampanye kesadaran lingkungan</li>
+                        <li>Matikan peralatan elektronik saat tidak digunakan</li>
+                    </ul>
+                </div>
+                
+                <div class="action-card">
+                    <h3>Dalam Transportasi</h3>
+                    <ul class="styled-list">
+                        <li>Gunakan transportasi umum</li>
+                        <li>Berbagi kendaraan (berboncengan)</li>
+                        <li>Bersepeda atau jalan kaki</li>
+                        <li>Rawat kendaraan agar emisi rendah</li>
+                        <li>Dukung kendaraan ramah lingkungan</li>
+                        <li>Hemat bahan bakar</li>
+                    </ul>
+                </div>
+
+                <div class="action-card">
+                    <h3>Dalam Gaya Hidup</h3>
+                    <ul class="styled-list">
+                        <li>Belanja seperlunya, hindari penumpukan makanan atau pakaian</li>
+                        <li>Pilih produk tanpa kemasan plastik berlebih atau isi ulang (refill station)</li>
+                        <li>Beli produk lokal dan musiman, mengurangi jejak karbon dari transportasi jauh</li>
+                        <li>Membeli barang yang tahan lama dan bisa diperbaiki</li>
+                        <li>Biasakan “zero food waste”, biasakan menghabiskan makanan</li>
+                        <li>Mendaur ulang dan memberi manfaat kembali untuk disumbangkan, dijual, dsb</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Kesimpulan</h2>
+            <div class="glass-card" style="border: 2px solid rgba(16, 185, 129, 0.4); background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%);">
+                <p><strong style="color: #ffffff; font-size: 1.3em; display: block; margin-bottom: 20px;">Tanggung jawab Muslim terhadap lingkungan hidup bukan sekadar anjuran, tetapi kewajiban agama yang akan dipertanggungjawabkan di hadapan Allah SWT.</strong></p>
+                <p>Sebagai khalifah di bumi, Muslim memiliki amanah untuk menjaga, memelihara, dan melestarikan lingkungan untuk keberlanjutan kehidupan. Krisis lingkungan yang terjadi saat ini adalah ujian bagi keimanan dan komitmen kita terhadap ajaran Islam.</p>
+                <p>Setiap Muslim, baik sebagai individu maupun komunitas, harus mengambil peran aktif dalam pelestarian lingkungan. Mulai dari hal-hal kecil dalam kehidupan sehari-hari hingga kebijakan besar, semua memiliki peran penting dalam menjaga bumi yang Allah titipkan kepada kita.</p>
+                <p><strong style="color: #ffffff; font-size: 1.2em;">Menjaga lingkungan adalah ibadah, dan merusaknya adalah dosa.</strong> Mari kita wujudkan Islam yang rahmatan lil 'alamin (Islam yang kehadirannya membawa rahmat bagi seluruh alam semesta, tidak hanya bagi umat Islam, tetapi juga bagi seluruh manusia, hewan, dan lingkungan) dengan menjadi garda terdepan dalam pelestarian lingkungan hidup.</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p style="font-size: 2em;"><strong>وَاللَّهُ أَعْلَمُ بِالصَّوَابِ</strong></p>
+        <p style="margin-top: -35px; font-size: 1em;">(Wallahu A'lam Bishawab)</p>
+        <p style="font-size: 1em; opacity: 0.8;">(Hanya Allah yang lebih mengetahui kebenaran yang sesungguhnya)</p>
+        <p style="margin-top: 40px; font-size: 1.1em; opacity: 0.9; font-style: italic;">Mari jaga bumi sebagai amanah dari Allah SWT</p>
+    </footer>
+    
+    <!-- Scroll to Top Button -->
+    <a href="#" class="scroll-top">↑</a>
+</body>
+</html>
